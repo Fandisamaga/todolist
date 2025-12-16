@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import type { ChangeEvent, FormEvent } from "react"
 import {
   Plus,
   CheckCircle2,
@@ -32,10 +33,7 @@ const Input = ({ className = "", ...props }: any) => (
 )
 
 const Card = ({ className = "", ...props }: any) => (
-  <div
-    {...props}
-    className={`rounded-xl border bg-white ${className}`}
-  />
+  <div {...props} className={`rounded-xl border bg-white ${className}`} />
 )
 
 /* ========= TYPES ========= */
@@ -139,7 +137,7 @@ export function TodoList() {
       {/* Input */}
       <Card className="p-4">
         <form
-          onSubmit={(e) => {
+          onSubmit={(e: FormEvent<HTMLFormElement>) => {
             e.preventDefault()
             addTodo()
           }}
@@ -148,7 +146,9 @@ export function TodoList() {
           <Input
             placeholder="Tambah tugas..."
             value={newTodo}
-            onChange={(e) => setNewTodo(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setNewTodo(e.target.value)
+            }
             className="flex-1"
           />
           <Button type="submit">
@@ -184,7 +184,9 @@ export function TodoList() {
                 <div className="flex gap-2">
                   <Input
                     value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setEditText(e.target.value)
+                    }
                     className="flex-1"
                     autoFocus
                   />
